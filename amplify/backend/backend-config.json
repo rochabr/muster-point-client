@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "musterpointclient264aad1e": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
