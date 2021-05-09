@@ -46,16 +46,30 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <!-- ADD AN ENTRY TO CFBundleURLTypes for Cognito Auth -->
-     <!-- IF YOU DO NOT HAVE CFBundleURLTypes, YOU CAN COPY THE WHOLE BLOCK BELOW -->
-     <key>CFBundleURLTypes</key>
-     <array>
-         <dict>
-             <key>CFBundleURLSchemes</key>
-             <array>
-                 <string>myapp</string>
-             </array>
-         </dict>
-     </array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>myapp</string>
+			</array>
+		</dict>
+	</array>
+	<key>AWSRegion</key>
+	<string>us-west-2</string>
+	<key>IdentityPoolId</key>
+	<string>us-west-2:52c2a33c-ca3f-48d2-a0be-5ee659193b74</string>
+	<key>MapName</key>
+	<string>muster-point</string>
+	<key>TrackerName</key>
+	<string>muster-tracker</string>
+	<key>GeofencesName</key>
+	<string>muster-geofences</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app wants to track your location</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app wants to track your location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app wants to track your location</string>
 </dict>
 </plist>

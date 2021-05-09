@@ -10,5 +10,7 @@ target 'muster-point-client' do
   pod 'AmplifyPlugins/AWSCognitoAuthPlugin'
 
   pod 'AWSCore'
+  pod 'AWSLocation' 
+  pod 'AWSMobileClient'
 
 end

@@ -16,6 +16,8 @@ PODS:
     - AWSCore (= 2.24.0)
   - AWSCognitoIdentityProviderASF (2.24.0)
   - AWSCore (2.24.0)
+  - AWSLocation (2.24.0):
+    - AWSCore (= 2.24.0)
   - AWSMobileClient (2.24.0):
     - AWSAuthCore (= 2.24.0)
     - AWSCognitoIdentityProvider (= 2.24.0)
@@ -29,6 +31,8 @@ DEPENDENCIES:
   - Amplify
   - AmplifyPlugins/AWSCognitoAuthPlugin
   - AWSCore
+  - AWSLocation
+  - AWSMobileClient
 
 SPEC REPOS:
   trunk:
@@ -38,6 +42,7 @@ SPEC REPOS:
     - AWSCognitoIdentityProvider
     - AWSCognitoIdentityProviderASF
     - AWSCore
+    - AWSLocation
     - AWSMobileClient
     - AWSPluginsCore
 
@@ -48,9 +53,10 @@ SPEC CHECKSUMS:
   AWSCognitoIdentityProvider: 874160e2f79fc957efd28745ee7389bccd59dfaf
   AWSCognitoIdentityProviderASF: a604ce4b892fe7be0729d22a77a36f8b641e35a4
   AWSCore: d5cd1311b33a4ae9faacda839c0ac9fff711cd79
+  AWSLocation: 2591b460ba935a17af11b381cdef0f4b8e14a8fe
   AWSMobileClient: 0cd4603f1dff10edb1e7b32e07753c864a21c5ed
   AWSPluginsCore: ffd554c493e6e46a45c2e71e4fbc33fbb3e00b7d
 
-PODFILE CHECKSUM: ae33ca31a68c26e6590f4055bb8c7d86b2756f80
+PODFILE CHECKSUM: e758a5e608261464d70e6e6a1e5591ca6aeacf73
 
 COCOAPODS: 1.10.1
