@@ -11,7 +11,7 @@
     "arn:aws:geo:eu-west-1:0123456789101:tracker/Tracker_EXAMPLE"
   ],
   "detail": {
-    "EventType": "ENTER",
+    "EventType": "EXIT",
     "GeofenceId": "polygon_14",
     "DeviceId": "2dc3adf7-c7bb-48d8-be88-6de270f60900",
     "SampleTime": "2020-11-10T23:43:37.531Z",

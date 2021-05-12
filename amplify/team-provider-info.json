@@ -18,7 +18,7 @@
       "function": {
         "musterPointFunction": {
           "deploymentBucketName": "amplify-musterpointclient-dev-115336-deployment",
-          "s3Key": "amplify-builds/musterPointFunction-48563961394d516a3659-build.zip"
+          "s3Key": "amplify-builds/musterPointFunction-30547a72305447316966-build.zip"
         }
       }
     }

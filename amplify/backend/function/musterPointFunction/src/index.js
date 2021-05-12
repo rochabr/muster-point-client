@@ -44,20 +44,22 @@ const appsyncClient = new AWSAppSyncClient(
 );
 
 exports.handler = async (event) => {
+	const userId = event?.detail?.DeviceId
+    
     const queryRes = await appsyncClient.query({
       query: gql(graphqlQuery),
-      variables: { id: event["detail"]["DeviceId"] }
+      variables: { id: userId }
     });
 
     const mutation = gql(graphqlUpdate)
 
-    const version = queryRes["data"]["getUser"]["_version"]
+    const version = queryRes?.data?.getUser?._version
 	const mutateRes = await appsyncClient.mutate({
       mutation,
       variables: { 
       	input: {
-      		id: event["detail"]["DeviceId"],
-      		isSafe: true,
+      		id: userId,
+      		isSafe: event?.detail?.EventType === "ENTER",
       		_version: version
       	}
       }

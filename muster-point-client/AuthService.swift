@@ -53,7 +53,17 @@ class AuthService: ObservableObject {
             switch result {
             case .success:
                 print("Signed out")
-                //self.deleteUsers()
+                
+                //clear local cache(good practice)
+                Amplify.DataStore.clear { result in
+                    switch result {
+                    case .success:
+                        print("DataStore cleared")
+                    case .failure(let error):
+                        print("Error clearing DataStore: \(error)")
+                    }
+                }
+                
             case .failure(let error):
                 print("Sign out failed \(error)")
             }
@@ -119,27 +129,6 @@ class AuthService: ObservableObject {
             case .failure(let error):
                 print("Error saving user \(error)")
             }
-        }
-    }
-    
-    func deleteUsers(){
-        Amplify.DataStore.query(User.self) { result in
-            switch result {
-                case .success(let users):
-                    for user in users {
-                        Amplify.DataStore.delete(user) { result in
-                            switch result {
-                            case .success:
-                                print("Post deleted!")
-                            case .failure(let error):
-                                print("Error deleting post - \(error.localizedDescription)")
-                            }
-                        }
-                    }
-                case .failure(let error):
-                    print("Error retrieving user \(error)")
-                    
-                }
         }
     }
 }
