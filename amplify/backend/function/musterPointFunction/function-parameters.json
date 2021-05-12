@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "api": {
+      "musterPointAPI": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

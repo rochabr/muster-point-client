@@ -8,6 +8,8 @@ target 'muster-point-client' do
   # Pods for muster-point-client
   pod 'Amplify'
   pod 'AmplifyPlugins/AWSCognitoAuthPlugin'
+  pod 'AmplifyPlugins/AWSAPIPlugin'
+  pod 'AmplifyPlugins/AWSDataStorePlugin'
 
   pod 'AWSCore'
   pod 'AWSLocation' 

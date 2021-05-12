@@ -7,6 +7,7 @@
 import CoreLocation
 import AWSLocation
 import AWSMobileClient
+import Amplify
 
 class LocationManager: NSObject,
                           ObservableObject,
@@ -56,7 +57,7 @@ class LocationManager: NSObject,
             let result = locationTracker.startTracking(
                 delegate: self,
                 options: TrackerOptions(
-                    customDeviceId: "12345",
+                    customDeviceId: Amplify.Auth.getCurrentUser()?.userId,
                     retrieveLocationFrequency: TimeInterval(5),
                     emitLocationFrequency: TimeInterval(20)),
                 listener: onTrackingEvent)

@@ -40,7 +40,8 @@ class AuthService: ObservableObject {
         _ = Amplify.Auth.signInWithWebUI(presentationAnchor: window) { result in
             switch result {
             case .success:
-                print("Signed in")
+                print("Signed in - saving user")
+                self.manageUser()
             case .failure(let error):
                 print("Sign in failed \(error)")
             }
@@ -52,6 +53,7 @@ class AuthService: ObservableObject {
             switch result {
             case .success:
                 print("Signed out")
+                //self.deleteUsers()
             case .failure(let error):
                 print("Sign out failed \(error)")
             }
@@ -76,4 +78,69 @@ class AuthService: ObservableObject {
             }
         }
     }
+    
+    func manageUser(){
+        guard let authUser = Amplify.Auth.getCurrentUser()
+        else{
+            print("User could not be retrieved")
+            return
+        }
+        
+        Amplify.DataStore.query(User.self, byId: authUser.userId) { result in
+            switch result {
+                case .success(let user):
+                    if user == nil{
+                        self.saveUser(user: authUser)
+                    }else{
+                        print("User already exists")
+                    }
+                case .failure(let error):
+                    print("Error retrieving user \(error)")
+                    
+                }
+        }
+    }
+    
+    func saveUser(user: AuthUser){
+        guard let authUser = Amplify.Auth.getCurrentUser()
+        else{
+            print("User could not be retrieved")
+            return
+        }
+        
+        let userId = authUser.userId
+        let userName = authUser.username
+        let user = User(id: userId, username: userName, isSafe: false)
+        
+        Amplify.DataStore.save(user) { result in
+            switch result {
+            case .success:
+                print("User saved successfully")
+            case .failure(let error):
+                print("Error saving user \(error)")
+            }
+        }
+    }
+    
+    func deleteUsers(){
+        Amplify.DataStore.query(User.self) { result in
+            switch result {
+                case .success(let users):
+                    for user in users {
+                        Amplify.DataStore.delete(user) { result in
+                            switch result {
+                            case .success:
+                                print("Post deleted!")
+                            case .failure(let error):
+                                print("Error deleting post - \(error.localizedDescription)")
+                            }
+                        }
+                    }
+                case .failure(let error):
+                    print("Error retrieving user \(error)")
+                    
+                }
+        }
+    }
 }
+

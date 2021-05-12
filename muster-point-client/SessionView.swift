@@ -34,7 +34,7 @@ struct SessionView: View {
     init() {
         geofenceHandler.listGeofences()
     }
-    
+
 }
 
 struct SessionView_Previews: PreviewProvider {

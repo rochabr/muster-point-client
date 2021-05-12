@@ -20,6 +20,9 @@
 		76EDC10E2647150200306D38 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76EDC10D2647150200306D38 /* Preview Assets.xcassets */; };
 		B7F8ECD78B684DCAA5EB3867 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DB23FFCFC08457A8A5D3C9D /* awsconfiguration.json */; };
 		F1F68BDAA5444740B1AAEB01 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = EE3176EA22544121AE47E6E2 /* amplifyconfiguration.json */; };
+		4BD313FC827E42E3960423AE /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8828970A36489583B0FB97 /* AmplifyModels.swift */; };
+		BCE9B6139EB4489ABC948DFC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462A4CF5F9584F71AF7C4E21 /* User.swift */; };
+		B2D91A55DF5F485D86C6F325 /* User+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D959F900B84917B8B7BCE3 /* User+Schema.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,10 @@
 		C1509430045C39AECD8020CB /* Pods-muster-point-client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-muster-point-client.debug.xcconfig"; path = "Target Support Files/Pods-muster-point-client/Pods-muster-point-client.debug.xcconfig"; sourceTree = "<group>"; };
 		E82F5EC1A22242CCACA11D47 /* amplifytools.xcconfig */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.xcconfig; path = amplifytools.xcconfig; sourceTree = "<group>"; };
 		EE3176EA22544121AE47E6E2 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		2F8828970A36489583B0FB97 /* AmplifyModels.swift */ = {isa = PBXFileReference; name = "AmplifyModels.swift"; path = "amplify/generated/models/AmplifyModels.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		462A4CF5F9584F71AF7C4E21 /* User.swift */ = {isa = PBXFileReference; name = "User.swift"; path = "amplify/generated/models/User.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		B9D959F900B84917B8B7BCE3 /* User+Schema.swift */ = {isa = PBXFileReference; name = "User+Schema.swift"; path = "amplify/generated/models/User+Schema.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		E15085D86B32475ABDA6D87B /* schema.graphql */ = {isa = PBXFileReference; name = "schema.graphql"; path = "amplify/backend/api/MusterPointAPI/schema.graphql"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = text; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +77,7 @@
 				E82F5EC1A22242CCACA11D47 /* amplifytools.xcconfig */,
 				EE3176EA22544121AE47E6E2 /* amplifyconfiguration.json */,
 				7DB23FFCFC08457A8A5D3C9D /* awsconfiguration.json */,
+				E15085D86B32475ABDA6D87B /* schema.graphql */,
 			);
 			name = AmplifyConfig;
 			path = .;
@@ -78,6 +86,7 @@
 		76EDC0FA264714FE00306D38 = {
 			isa = PBXGroup;
 			children = (
+				F937F503956B4D49995C7439 /* AmplifyModels */,
 				7320ADCC1CF64626A5ABE01B /* AmplifyConfig */,
 				76EDC105264714FE00306D38 /* muster-point-client */,
 				76EDC104264714FE00306D38 /* Products */,
@@ -125,6 +134,25 @@
 				2A5C2266110CB59E2EA14CA8 /* Pods_muster_point_client.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F937F503956B4D49995C7439 /* AmplifyModels */ = {
+			isa = PBXGroup;
+			children = (
+				2F8828970A36489583B0FB97 /* AmplifyModels.swift */,
+				462A4CF5F9584F71AF7C4E21 /* User.swift */,
+				B9D959F900B84917B8B7BCE3 /* User+Schema.swift */,
+			);
+			name = AmplifyModels;
+			path = .;
+			sourceTree = "<group>";
+		};
+		33AFA5A837EA431698B34601 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			path = undefined;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +283,9 @@
 				765F33802647204B00CDF05A /* AuthService.swift in Sources */,
 				76EDC107264714FE00306D38 /* muster_point_clientApp.swift in Sources */,
 				765F337D26471F9300CDF05A /* SessionView.swift in Sources */,
+				4BD313FC827E42E3960423AE /* AmplifyModels.swift in Sources */,
+				BCE9B6139EB4489ABC948DFC /* User.swift in Sources */,
+				B2D91A55DF5F485D86C6F325 /* User+Schema.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
