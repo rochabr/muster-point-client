@@ -4,71 +4,57 @@
 	ENV
 	REGION
 Amplify Params - DO NOT EDIT */
-const AWS = require('aws-sdk');
-const graphqlQuery = require('./query.js').query;
-const graphqlUpdate = require('./update.js').update;
-const gql = require('graphql-tag');
-const AWSAppSyncClient = require('aws-appsync').default;
-require('es6-promise').polyfill();
-require('isomorphic-fetch');
 
-const url = process.env.API_MUSTERPOINTAPI_GRAPHQLAPIENDPOINTOUTPUT;
-const region = process.env.REGION;
-AWS.config.update({
-  region,
-  credentials: new AWS.Credentials(
-    process.env.AWS_ACCESS_KEY_ID,
-    process.env.AWS_SECRET_ACCESS_KEY,
-    process.env.AWS_SESSION_TOKEN
-  ),
-});
-const credentials = AWS.config.credentials;
-const appsyncClient = new AWSAppSyncClient(
-  {
-    url,
-    region,
-    auth: {
-      type: 'AWS_IAM',
-      credentials,
-    },
-    disableOffline: true,
-  },
-  {
-    defaultOptions: {
-      query: {
-        fetchPolicy: 'network-only',
-        errorPolicy: 'all',
-      },
-    },
+import { getUserById, updateUser } from "./api";
+import { appsyncClient } from "./setup";
+
+function getEventData(event) {
+  const payload = event?.detail;
+  let data = undefined;
+  if (payload?.DeviceId && payload?.EventType) {
+    data = { ...payload };
   }
-);
+  return data;
+}
 
 exports.handler = async (event) => {
-	const userId = event?.detail?.DeviceId
-    
-    const queryRes = await appsyncClient.query({
-      query: gql(graphqlQuery),
-      variables: { id: userId }
-    });
+  // check if the event has the expected data
+  const eventData = getEventData(event);
+  if (!eventData) {
+    return {
+      statusCode: 400,
+      body: "Invalid request. The event data is not present or not in the expected format.",
+    };
+  }
 
-    const mutation = gql(graphqlUpdate)
+  // query the user by its id, so we can get the current version
+  // since DataStore relies on versioned objects, we need to send the current version in mutations
+  const userId = eventData.DeviceId;
+  const queryResponse = await appsyncClient.query(getUserById(userId));
+  const user = queryResponse.data?.getUser;
+  if (!user) {
+    return {
+      statusCode: 404,
+      body: `User with id ${userId} not found in the database.`,
+    };
+  }
 
-    const version = queryRes?.data?.getUser?._version
-	const mutateRes = await appsyncClient.mutate({
-      mutation,
-      variables: { 
-      	input: {
-      		id: userId,
-      		isSafe: event?.detail?.EventType === "ENTER",
-      		_version: version
-      	}
-      }
-    });    
+  const mutationResponse = await appsyncClient.mutate(
+    updateUser({
+      id: userId,
+      isSafe: eventData.EventType === "ENTER",
+      _version: user._version,
+    })
+  );
 
-    
-    response = {
-            statusCode: 200,
-            body: mutateRes,
-     };
-    return response;
+  if (mutationResponse.errors?.length > 0) {
+    return {
+      statusCode: 400,
+      body: mutationResponse.errors,
+    };
+  }
+  return {
+    statusCode: 200,
+    body: mutationResponse.data.updateUser,
+  };
 };
